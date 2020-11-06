@@ -1,0 +1,24 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "description": "Electon test",
+  "main": "main.js",
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^10.1.5",
+    "electron-packager": "^8.1.0",
+    "electron-reload": "^1.5.0"
+  },
+  "repository": {},
+  "scripts": {
+    "start": "electron main.js",
+    "dev": "electron . --enable-logging",
+    "clean": "rm -rf ./dist",
+    "clean:osx": "rm -rf ./dist/osx",
+    "pack": "npm run clean && npm run pack:osx",
+    "pack:osx": "npm run clean:osx && electron-packager . \"VisACC\" --out=dist/osx --platform=darwin --arch=x64 --asar.unpackDir=asar_subdir --version=0.36.2 --icon=../bird.icns --ignore=dist --ignore=assets --ignore=builder.json --ignore=bower.json --ignore=README.md --ignore=.gitignore --ignore=preview.png",
+    "rebuild": "npm install electron-rebuild & ./node_modules/.bin/electron-rebuild"
+  },
+  "author": "Daniel Ellis, daniel.ellis.research@gmail.com",
+  "license": "ISC"
+}

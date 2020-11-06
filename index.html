@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<body>
+<script type="module">
+
+// Load the Observable runtime and inspector.
+import {Runtime, Inspector} from "./runtime.js";
+
+
+
+var user = 'wolfiex'
+var nbk = 'pyobservable-example'
+
+
+async function run(){
+
+const apistr = `https://api.observablehq.com/@${user}/${nbk}.js?v=3`
+const notebook = await import(apistr);
+const define = notebook.default
+
+console.log(define)
+window.d = notebook
+
+
+
+new Runtime().module(define, Inspector.into(document.body))//"#observablehq"));
+
+
+}
+
+run()
+
+</script>

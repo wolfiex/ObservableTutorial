@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <body>
+<div id='topmost' style='position:absolute;display:block'></div>
+    
 <script type="module">
 
 // Load the Observable runtime and inspector.
 import {Runtime, Inspector} from "./runtime.js";
-
 
 
 var user = 'wolfiex'
@@ -17,8 +18,13 @@ async function run(){
     const notebook = await import(apistr);
     const define = notebook.default
 
-    new Runtime().module(define, Inspector.into(document.body))//"#observablehq"));
-
+    new Runtime().module(define, name => {
+    switch(name){
+      case "chart": return Inspector.into(document.body)();
+      case "viewof rotate": return Inspector.into(document.getElementById('topmost'))();
+    }//return true;
+  });
+    
 }
 
 run()

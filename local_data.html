@@ -2,13 +2,6 @@
 <body>
 <div id='topmost' style='position:absolute;display:block'></div>
 <script src="https://d3js.org/d3.v6.min.js"></script>    
-<style>
-body{
-    filter: invert(1);
-    background-color: #222;
-}
-</style>
-
 <script type="module">
 // Load the Observable runtime and inspector.
 import { Runtime, Inspector } from "./runtime.js";
@@ -35,7 +28,6 @@ async function run() {
     d3.csv("./airports.csv").then(parsedata)
     
     function parsedata(data){
-        
         //convert to numerical and add randomness
         data = data.map(({ longitude, latitude })=>
         [+longitude+Math.random(), +latitude*.7])
